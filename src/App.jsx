@@ -1,32 +1,21 @@
 import { Route, Routes } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import Navbar from './Components/Navbar'
 import Allproducts from './Pages/Allproducts'
 import ProductDetails from './Pages/ProductDetails'
+import About from './Pages/About'
+import Contact from './Pages/Contact'
 
 const App = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth)
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   return (
-    <div className=' w-full h-screen '>
-      {windowWidth >= 650 && <Navbar />}
+    <div className='w-full min-h-screen'>
+      <Navbar />
 
       <Routes>
         <Route path='/' element={<Allproducts />} />
         <Route path='/product/:id' element={<ProductDetails />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
-
-
-
     </div>
   )
 }
